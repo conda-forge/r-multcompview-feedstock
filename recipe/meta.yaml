@@ -1,4 +1,4 @@
-{% set version = '0.1-7' %}
+{% set version = "0.1-8" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -11,12 +11,12 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/multcompView_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/multcompView/multcompView_{{ version }}.tar.gz
-  sha256: f1dc100d602a82694e97bf4329af7220b8395b17340d4047d0f2bbd7dbb0eea1
+  sha256: 123d539172ad6fc63d83d1fc7f356a5ed7b691e7803827480118bebc374fd8e5
 
 build:
   noarch: generic
   merge_build_host: True  # [win]
-  number: 1002
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
