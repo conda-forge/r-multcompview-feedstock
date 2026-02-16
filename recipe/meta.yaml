@@ -1,4 +1,4 @@
-{% set version = "0.1-10" %}
+{% set version = "0.1-11" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -10,11 +10,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/multcompView_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/multcompView/multcompView_{{ version }}.tar.gz
-  sha256: 38f249b22758c9f727b1656d1a08c6022a06a1ea319364ff680147d64598ad8a
+  sha256: fd9b6a2612d8b8fdb9d73996ebf82b5105e6c7cc28eeca7b271d4fb70241a8ed
 
 build:
   noarch: generic
-  number: 2
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
@@ -35,8 +35,8 @@ test:
 about:
   home: https://CRAN.R-project.org/package=multcompView
   license: GPL-2.0 and GPL-3.0
-  summary: Convert a logical vector or a vector of p-values or a correlation, difference, or distance matrix into a display identifying the pairs for which the differences were not significantly different.  Designed for use in conjunction with the output of functions like TukeyHSD, dist{stats}, simint, simtest, csimint,
-    csimtest{multcomp}, friedmanmc, kruskalmc{pgirmess}.
+  summary: Convert a logical vector or a vector of p-values or a correlation, difference, or distance matrix into a display identifying the pairs for which the differences were not significantly different.  Designed for use in conjunction with the output of functions like TukeyHSD, dist{stats}, simint, simtest, 
+    csimint, csimtest{multcomp}, friedmanmc, kruskalmc{pgirmess}.
   license_family: GPL
   license_file: {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
 
