@@ -1,16 +1,15 @@
-{% set version = "0.1-11" %}
+{% set version = "0.1-12" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
   name: r-multcompview
-  version: {{ version|replace("-", "_") }}
+  version: "{{ version|replace("-", "_") }}"
 
 source:
-  fn: multcompView_{{ version }}.tar.gz
   url:
     - {{ cran_mirror }}/src/contrib/multcompView_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/multcompView/multcompView_{{ version }}.tar.gz
-  sha256: fd9b6a2612d8b8fdb9d73996ebf82b5105e6c7cc28eeca7b271d4fb70241a8ed
+  sha256: 444af930d0da731e9be1c191e8ca48acaafbe8a64ef82351f59f9c113c6065b0
 
 build:
   noarch: generic
@@ -18,10 +17,15 @@ build:
   rpaths:
     - lib/R/lib/
     - lib/
+  missing_dso_whitelist:
+    - '*/R.dll'        # [win]
+    - '*/Rblas.dll'    # [win]
+    - '*/Rlapack.dll'  # [win]
 
 requirements:
   build:
     - {{ posix }}zip               # [win]
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
   host:
     - r-base
   run:
@@ -33,12 +37,16 @@ test:
     - "\"%R%\" -e \"library('multcompView')\""  # [win]
 
 about:
-  home: https://CRAN.R-project.org/package=multcompView
-  license: GPL-2.0 and GPL-3.0
-  summary: Convert a logical vector or a vector of p-values or a correlation, difference, or distance matrix into a display identifying the pairs for which the differences were not significantly different.  Designed for use in conjunction with the output of functions like TukeyHSD, dist{stats}, simint, simtest, 
-    csimint, csimtest{multcomp}, friedmanmc, kruskalmc{pgirmess}.
-  license_family: GPL
-  license_file: {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
+  home: https://lselzer.github.io/multcompview/
+  license: GPL-2.0-only
+  summary: Convert a logical vector or a vector of p-values or a correlation, difference, or
+    distance matrix into a display identifying the pairs for which the differences were
+    not significantly different. Designed for use in conjunction with the output of
+    functions like TukeyHSD, dist (stats), simint, simtest, csimint, csimtest (multcomp),
+    friedmanmc, kruskalmc (pgirmess).
+  license_family: GPL2
+  license_file:
+    - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
 
 extra:
   recipe-maintainers:
